@@ -2,12 +2,6 @@ global:
   scrape_interval: 15s
 
 scrape_configs:
-  - job_name: 'prometheus'
-    scrape_interval: 15s
-    metrics_path: /prometheus/metrics
-    static_configs:
-      - targets: ['localhost:9090']
-      
   - job_name: 'app'
     scrape_interval: 15s
     static_configs:
@@ -20,6 +14,16 @@ scrape_configs:
 
   - job_name: 'node_exporter'
     scrape_interval: 15s
+    static_configs:
+      - targets: ['192.168.10.100:9100']
+        labels:
+          node: "node1"
+      - targets: ['192.168.10.100:9100']
+        labels:
+          node: "node2"
+
+  - job_name: 'proxy'
+    scrape_interval: 10s
     static_configs:
       - targets: ['192.168.10.100:9100']
         labels:
