@@ -1,3 +1,4 @@
 prometheus/prometheus_data/
 prometheus/prometheus.yml
 grafana/data/
+.env
