@@ -19,7 +19,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 12,
+  "id": 2,
   "links": [],
   "panels": [
     {
@@ -1569,5 +1569,5 @@
   "timezone": "browser",
   "title": "Servers",
   "uid": "bekhxoj6856gwe",
-  "version": 5
+  "version": 1
 }
