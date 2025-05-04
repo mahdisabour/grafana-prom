@@ -2,30 +2,74 @@ global:
   scrape_interval: 15s
 
 scrape_configs:
-  - job_name: 'app'
-    scrape_interval: 15s
-    static_configs:
-      - targets: ['192.168.10.100:8001']
-        labels:
-          service: "test1"
-      - targets: ['192.168.10.100:8002']
-        labels:
-          service: "test2"
-
   - job_name: 'node'
-    scrape_interval: 15s
+    scrape_interval: 10s
     static_configs:
-      - targets: ['192.168.10.100:9100']
+      - targets: ['192.168.10.211:9100']
         labels:
-          hostname: "node1"
-  
+          hostname: "backend"
+      - targets: ['192.168.10.201:9100']
+        labels:
+          hostname: "EM1"
+      - targets: ['192.168.10.202:9100']
+        labels:
+          hostname: "EM2"
+      - targets: ['192.168.10.203:9100']
+        labels:
+          hostname: "EM3"
+      - targets: ['192.168.10.204:9100']
+        labels:
+          hostname: "EM4"
+      - targets: ['192.168.10.205:9100']
+        labels:
+          hostname: "EM5"
+      - targets: ['192.168.10.206:9100']
+        labels:
+          hostname: "DB-QD1"
+      - targets: ['192.168.10.207:9100']
+        labels:
+          hostname: "DB-QD2"
+      - targets: ['192.168.10.216:9100']
+        labels:
+          hostname: "DB-EL"
+      - targets: ['192.168.10.208:9100']
+        labels:
+          hostname: "DM"
+      - targets: ['192.168.10.209:9100']
+        labels:
+          hostname: "BOT"
+      - targets: ['192.168.10.210:9100']
+        labels:
+          hostname: "DB-BOT"
+      - targets: ['192.168.10.214:9100']
+        labels:
+          hostname: "Proxy"
+      - targets: ['192.168.10.212:9100']
+        labels:
+          hostname: "DB_BACKEND"
+      - targets: ['192.168.10.213:9100']
+        labels:
+          hostname: "Frontend"
+
   - job_name: 'proxy'
     scrape_interval: 10s
     static_configs:
-      - targets: ['192.168.10.100:9100']
+      - targets: ['192.168.10.214:9113']
         labels:
-          node: "node1"
-      - targets: ['192.168.10.100:9100']
+          node: "proxy-nginx"
+      - targets: ['192.168.10.213:9113']
         labels:
-          node: "node2"
+          node: "front-nginx"
 
+  - job_name: 'app'
+    scrape_interval: 15s
+    static_configs:
+      - targets: ['192.168.10.220:8000']
+        labels:
+          service: "Bot-dev"
+      - targets: ['192.168.10.209:80']
+        labels:
+          service: "BOT"
+    scheme: http
+    tls_config:
+      insecure_skip_verify: true

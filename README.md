@@ -13,21 +13,32 @@ docker run -d \
 
 ## nginx exporter setup
 ```bash
-docker run --restart always --name nginx_exporter --net="host" nginx/nginx-prometheus-exporter:1.4.2 --nginx.scrape-uri=http://<nginx>:8080/stub_status
+docker run --restart always --name nginx_exporter --net="host" nginx/nginx-prometheus-exporter:latest --nginx.scrape-uri=http://<nginx>:8080/stub_status
+```
+
+```yml
+nginx_exporter:
+    image: nginx/nginx-prometheus-exporter:latest
+    container_name: nginx-exporter
+    restart: always
+    command:
+      - "--nginx.scrape-uri=http://main_service:8080/stub_status"
+    ports:
+      - "9113:9113"
+    networks:
+      - network_dana
+    depends_on:
+      - main_service
 ```
 
 **Note:** stub_status should be added to nginx.conf
 
 ```nginx
 server {
-    listen 80;
+    listen 8080;
 
     location /stub_status {
-        stub_status;
-        allow 127.0.0.1;  # Allow localhost (adjust as needed)
-        allow ::1;
-        allow 0.0.0.0/0;  # (optional) allow all for testing
-        deny all;
+        stub_status on;
     }
 }
 ```
