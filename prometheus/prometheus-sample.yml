@@ -12,16 +12,13 @@ scrape_configs:
         labels:
           service: "test2"
 
-  - job_name: 'node_exporter'
+  - job_name: 'node'
     scrape_interval: 15s
     static_configs:
       - targets: ['192.168.10.100:9100']
         labels:
-          node: "node1"
-      - targets: ['192.168.10.100:9100']
-        labels:
-          node: "node2"
-
+          hostname: "node1"
+  
   - job_name: 'proxy'
     scrape_interval: 10s
     static_configs:
