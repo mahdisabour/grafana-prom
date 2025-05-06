@@ -34,6 +34,18 @@ services:
     networks:
       - monitoring-network
 
+  loki:
+    image: grafana/loki:latest
+    container_name: loki
+    ports:
+      - 3100:3100
+    volumes:
+      - loki_data:/loki
+      - ./loki/loki-config.yaml:/etc/loki/local-config.yaml
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - monitoring-network
+
 networks:
   monitoring-network:
     name: monitoring-network
@@ -42,3 +54,4 @@ networks:
 volumes:
   grafana_data:
   prometheus_data:
+  loki_data:

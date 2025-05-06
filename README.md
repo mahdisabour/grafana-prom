@@ -79,3 +79,9 @@ app.add_middleware(
 Instrumentator().instrument(app).expose(app)
 
 ```
+
+
+### Loki log handler
+
+- use utils.py in loki directory in your code to handle logging
+- example usage is provided in loki directory
