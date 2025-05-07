@@ -83,5 +83,23 @@ Instrumentator().instrument(app).expose(app)
 
 ### Loki log handler
 
-- use utils.py in loki directory in your code to handle logging
-- example usage is provided in loki directory
+```bash
+docker plugin install grafana/loki-docker-driver:2.9.2 --alias loki --grant-all-permissions
+docker plugin enable loki
+```
+
+- add following line to desired docker compose file 
+```yml
+x-logging: &default-logging
+  driver: loki
+  options:
+    loki-url: 'http://192.168.10.100:3100/api/prom/push'
+    loki-retries: "5"
+    loki-external-labels: "container_name=app"
+    mode: non-blocking  
+
+  app:
+    ...
+    logging: *default-logging
+
+```
