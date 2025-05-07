@@ -94,6 +94,7 @@ docker plugin enable loki
   options:
     loki-url: 'http://192.168.10.100:3100/api/prom/push'
     loki-retries: "5"
+    loki-external-labels: "container_name=app"
     mode: non-blocking  
     loki-pipeline-stages: |
       - multiline:
@@ -101,7 +102,7 @@ docker plugin enable loki
           max_wait_time: 3s
       - regex:
           expression: '^(?P<time>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2},\d{3}) - (?P<logger>[^\s]+) - (?P<level>[A-Z]+) - (?P<message>.*)'
-
+ 
   app:
     ...
     logging: *default-logging
