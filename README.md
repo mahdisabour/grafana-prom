@@ -44,7 +44,7 @@ server {
 ```
 
 
-## fast api setup
+## fast api setup for prometheus
 
 ### installation
 ```bash
@@ -124,7 +124,6 @@ from logger import LogClass
 - Here is a simple example of how to use the logger:
 
 ```python
-# example.py
 from logger import LogClass
 
 log = LogClass()
