@@ -90,6 +90,7 @@ docker plugin enable loki
 
 - add following line to desired docker compose file 
 ```yml
+x-logging: &default-logging
   driver: loki
   options:
     loki-url: 'http://192.168.10.100:3100/api/prom/push'
