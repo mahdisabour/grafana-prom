@@ -103,3 +103,50 @@ x-logging: &default-logging
     logging: *default-logging
 
 ```
+
+
+## python setup for logging
+
+1. Place the logger package in your project’s root directory (or any directory accessible via Python's import path).
+
+2. Import the logger class in any Python file where you want to log messages:
+
+```python
+from logger import LogClass
+```
+
+- Here is a simple example of how to use the logger:
+
+```python
+# example.py
+from logger import LogClass
+
+log = LogClass()
+
+log.info("This is an info message.")
+log.warning("This is a warning message.")
+log.error("This is an error message.")
+log.debug("This is a debug message.")
+
+```
+
+### Where and why should different log levels be used?
+
+
+- **Log Levels Overview**
+
+| Level       | Purpose                                                    | Use Case Example                          |
+|-------------|------------------------------------------------------------|--------------------------------------------|
+| **DEBUG**   | Detailed information, typically useful for developers.     | Variables, function calls, loop states.    |
+| **INFO**    | General events to confirm everything is working as expected. | Start/end of processes, user actions.      |
+| **WARNING** | Indicates something unexpected, but not critical.          | Deprecated API usage, retry attempts.      |
+| **ERROR**   | A serious problem, functionality is impacted.              | Failed operations, exceptions.             |
+| **CRITICAL**| A severe error causing program shutdown or major failure.  | System crash, database unavailable.        |
+
+**When to Use Each**
+
+- **Use `DEBUG`** during development to trace internal logic and variable values.
+- **Use `INFO`** in production to log key checkpoints or successful operations.
+- **Use `WARNING`** to catch and monitor non-breaking issues before they escalate.
+- **Use `ERROR`** when something goes wrong but the app can continue running.
+- **Use `CRITICAL`** when an issue requires immediate attention and likely halts the program.
