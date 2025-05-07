@@ -81,7 +81,7 @@ Instrumentator().instrument(app).expose(app)
 ```
 
 
-### Loki log handler
+## Loki log handler
 
 ```bash
 docker plugin install grafana/loki-docker-driver:2.9.2 --alias loki --grant-all-permissions
