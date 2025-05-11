@@ -126,7 +126,7 @@ from logger import LogClass
 ```python
 from logger import LogClass
 
-log = LogClass()
+log = LogClass.get_logger(name="your-logger-name")
 
 log.info("This is an info message.")
 log.warning("This is a warning message.")
