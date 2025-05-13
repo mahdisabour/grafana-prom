@@ -1,5 +1,4 @@
+prometheus/prometheus_data/
 prometheus/prometheus.yml
+grafana/data/
 .env
-grafana-data/
-prometheus-data/
-loki-data/

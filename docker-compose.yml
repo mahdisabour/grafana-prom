@@ -7,7 +7,7 @@ services:
       - 9090:9090
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./prometheus-data:/prometheus
+      - prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -26,7 +26,7 @@ services:
     ports:
       - 3001:3000
     volumes:
-      - ./grafana-data:/var/lib/grafana
+      - grafana_data:/var/lib/grafana
       - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
 
     env_file:
@@ -41,7 +41,7 @@ services:
     ports:
       - 3100:3100
     volumes:
-      - ./loki-data:/loki
+      - loki_data:/loki
       - ./loki/loki-config.yaml:/etc/loki/local-config.yaml
     command: -config.file=/etc/loki/local-config.yaml
     networks:
@@ -52,3 +52,7 @@ networks:
     name: monitoring-network
     driver: bridge
 
+volumes:
+  grafana_data:
+  prometheus_data:
+  loki_data:
