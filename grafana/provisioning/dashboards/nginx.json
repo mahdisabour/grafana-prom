@@ -19,7 +19,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 3,
+  "id": 2,
   "links": [],
   "panels": [
     {
@@ -267,7 +267,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(nginx_connections_handled{node=~\"$node\"}[5m])",
+          "expr": "irate(nginx_connections_handled{node=~\"$node\"}[1m])",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -552,5 +552,5 @@
   "timezone": "",
   "title": "NGINX exporter",
   "uid": "MsjffzSZz",
-  "version": 5
+  "version": 4
 }

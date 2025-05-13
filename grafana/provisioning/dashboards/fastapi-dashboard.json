@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 4,
+  "id": 5,
   "links": [],
   "panels": [
     {
@@ -1165,7 +1165,8 @@
           },
           "direction": "backward",
           "editorMode": "code",
-          "expr": "sum by(type) (\n  rate(\n    {compose_service=\"app\"}\n    | pattern `<date> <time> - <logger> - <type> - <msg>`\n    | type != \"\" \n    [1m]\n  )\n)",
+          "expr": "sum by(type) (\n  rate(\n    {service_name=\"$service\"}\n    | pattern `<date> <time> - <logger> - <type> - <msg>`\n    | type != \"\" \n    [1m]\n  )\n)",
+          "hide": true,
           "legendFormat": "{{type}}",
           "queryType": "range",
           "refId": "A"
@@ -1210,7 +1211,7 @@
           },
           "direction": "backward",
           "editorMode": "code",
-          "expr": "{compose_service=\"app\"} ",
+          "expr": "{service_name=\"$service\"} ",
           "hide": false,
           "queryType": "range",
           "refId": "A"
@@ -1262,5 +1263,5 @@
   "timezone": "",
   "title": "FastAPI Dashboard",
   "uid": "_eX4mpl3",
-  "version": 3
+  "version": 5
 }
