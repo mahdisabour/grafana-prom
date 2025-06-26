@@ -1,10 +1,10 @@
 import httpx
 
-from ..core.config import get_setting
+from app.core.config import get_setting
+from app.utils.exceptions import ServiceUnavailableException
 
 
 SETTING = get_setting()
-
 
 
 class SMSAdapter:
@@ -27,7 +27,7 @@ class SMSAdapter:
                 response = await client.post(SETTING.sms_config.url, data=payload)
                 response.raise_for_status()
             except httpx.HTTPError as e:
-                print(f"Failed to send SMS: {e}")
+                ServiceUnavailableException(f"SMS service is unavailable")
         
 
 if __name__ == "__main__":

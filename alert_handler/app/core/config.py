@@ -8,7 +8,8 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class SMSConfig(BaseSettings):
     username: str = "username"
     password: str = "password"
-    sender_number: str = "sernder_number"   
+    sender_number: str = "sernder_number"
+    default_admin_number: str = "09145178976"   
     url: str = "http://url.com" 
     mock: bool = False
 
