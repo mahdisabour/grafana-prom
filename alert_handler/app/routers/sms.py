@@ -21,7 +21,7 @@ async def send_sms(
     
     message = format_alert_message(data)
     await SMSAdapter.send(
-        phone_number=SETTING.sms_config.default_admin_number,
+        phone_numbers=SETTING.sms_config.phone_numbers,
         message_text=message
     )
 

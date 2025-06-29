@@ -9,7 +9,7 @@ class SMSConfig(BaseSettings):
     username: str = "username"
     password: str = "password"
     sender_number: str = "sernder_number"
-    default_admin_number: str = "09145178976"   
+    phone_numbers: list[str] = ["09145178976"]   
     url: str = "http://url.com" 
     mock: bool = False
 
