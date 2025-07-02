@@ -52,16 +52,11 @@ services:
       context: alert_handler/
       dockerfile: Dockerfile
     container_name: alert_handler
-    volumes:
-      - ./alert_handler/app:/src/app
-      - ./alert_handler/tests:/src/tests
     command: >
       bash -c "uvicorn app.main:app --reload --host 0.0.0.0 --port 8080"
     restart: on-failure
     env_file:
       - ./alert_handler/.env
-    ports:
-      - 8080:8000
     networks:
       - monitoring-network
 
