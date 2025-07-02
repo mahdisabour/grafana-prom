@@ -1,14 +1,4 @@
-# Base image to export requirements
-FROM python:3.11-slim AS requirements-stage
-
-RUN pip install poetry
-COPY ./pyproject.toml ./poetry.lock* /tmp/
-WORKDIR /tmp
-
-RUN poetry export -f requirements.txt --output requirements.txt --without-hashes
-
-# App image
-FROM python:3.11-slim AS build-stage
+FROM python:3.11-slim
 
 ENV PYTHONUNBUFFERED=1
 EXPOSE 8000
@@ -20,7 +10,7 @@ RUN apt-get update && \
     apt-get install -y postgresql-client && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-COPY --from=requirements-stage /tmp/requirements.txt /src/requirements.txt
+COPY ./requirements.txt /src/requirements.txt
 
 RUN pip install --no-cache-dir --upgrade -r /src/requirements.txt
 

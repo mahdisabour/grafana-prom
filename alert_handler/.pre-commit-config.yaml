@@ -1,0 +1,56 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+        exclude: tests/getfile_sample
+      - id: check-yaml
+      - id: check-added-large-files
+
+  - repo: https://github.com/psf/black
+    rev: 23.10.1
+    hooks:
+      - id: black
+        language_version: python3.11
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        name: isort (python)
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.1.0
+    hooks:
+      - id: flake8
+        additional_dependencies:
+          - flake8-bandit
+          - flake8-bugbear
+          - flake8-builtins
+          - flake8-comprehensions
+          - flake8-eradicate
+          - flake8-print
+          - flake8-implicit-str-concat
+          - pep8-naming
+        args: [
+            "--exclude=.git,__pycache__",
+            "--filename=*.py",
+            "--max-complexity=12",
+            "--max-line-length=120",
+            "--ignore=N806,S105,S106,S311,W503",
+            "--per-file-ignores=tests/*:S101,
+            app/drivers/otdr_driver/driver.py:E800,
+            app/fastapi_app/measurement.py:B008,
+            app/fastapi_app/operational.py:B008,
+            app/fastapi_app/schemas.py:A003,
+            tests/locust/locust_test_api_load.py:F841",
+          ]
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.6.1
+    hooks:
+      - id: mypy
+        additional_dependencies:
+          - types-redis
+        language_version: python3.11
