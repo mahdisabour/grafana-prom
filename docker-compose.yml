@@ -59,6 +59,8 @@ services:
       - ./alert_handler/.env
     networks:
       - monitoring-network
+    volumes:
+      - ./alert_handler/app:/src/app
 
 networks:
   monitoring-network:

@@ -20,7 +20,7 @@ class SMSAdapter:
                     'userName': SETTING.sms_config.username,
                     'password': SETTING.sms_config.password,
                     'senderNumber': SETTING.sms_config.sender_number,
-                    'recieverNumber': phone_number,
+                    'reciverNumber': phone_number,
                     'smsText': message_text
                 }
 
