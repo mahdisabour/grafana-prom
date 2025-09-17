@@ -17,7 +17,7 @@ def format_alert_message(data: dict) -> str:
 
             message_lines.append(
                 f"Host: {hostname}\n"
-                f"Started: {started}"
+                f"Instance: {instance}\n"
             )
 
         return "\n".join(message_lines)
