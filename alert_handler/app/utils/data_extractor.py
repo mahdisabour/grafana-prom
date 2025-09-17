@@ -8,8 +8,8 @@ def format_alert_message(data: dict) -> str:
             raise UnprocessableEntityException("No alerts found in message")
 
         alert_name = data.get("commonLabels", {}).get("alertname", "N/A")
-        message_lines = [f"ALERT GROUP: {alert_name}"]
-        message_lines.append("Details:\n")
+        message_lines = [f"ALERT GROUP: {alert_name}\n"]
+        message_lines.append("Details:")
 
         for idx, alert in enumerate(alerts, start=1):
             hostname = alert.get("labels", {}).get("hostname", "Unknown host")
