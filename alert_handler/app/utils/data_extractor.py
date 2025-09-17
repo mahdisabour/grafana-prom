@@ -9,16 +9,14 @@ def format_alert_message(data: dict) -> str:
 
         alert_name = data.get("commonLabels", {}).get("alertname", "N/A")
         message_lines = [f"ALERT GROUP: {alert_name}"]
-        message_lines.append("Details:")
+        message_lines.append("Details:\n")
 
         for idx, alert in enumerate(alerts, start=1):
             hostname = alert.get("labels", {}).get("hostname", "Unknown host")
             instance = alert.get("labels", {}).get("instance", "N/A")
-            started = alert.get("startsAt", "N/A")
 
             message_lines.append(
                 f"Host: {hostname}\n"
-                f"Instance: {instance}\n"
                 f"Started: {started}"
             )
 
